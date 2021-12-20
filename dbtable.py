@@ -10,7 +10,7 @@ import boto3
 # Get the service resource.
 # import key_config as keys
 
-dynamodb = boto3.resource('dynamodb')
+dynamodb = boto3.resource('dynamodb',region_name='ap-south-1')
 #                     aws_access_key_id=keys.ACCESS_KEY_ID,
 #                     aws_secret_access_key=keys.ACCESS_SECRET_KEY,
 #                     aws_session_token=keys.AWS_SESSION_TOKEN)

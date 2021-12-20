@@ -12,7 +12,7 @@ import boto3
 app = Flask(__name__)
 
 
-dynamodb = boto3.resource('dynamodb')
+dynamodb = boto3.resource('dynamodb',region_name='ap-south-1')
 #                     aws_access_key_id=keys.ACCESS_KEY_ID,
 #                     aws_secret_access_key=keys.ACCESS_SECRET_KEY,
 #                     aws_session_token=keys.AWS_SESSION_TOKEN)
@@ -33,7 +33,7 @@ def signup():
         gender = request.form['gender']
         address = request.form['address']
         
-        table = dynamodb.Table('userdata')
+        table = dynamodb.Table('userdata1')
         
         table.put_item(
                 Item={
@@ -61,7 +61,7 @@ def check():
         email = request.form['email']
         password = request.form['password']
         
-        table = dynamodb.Table('userdata')
+        table = dynamodb.Table('userdata1')
         response = table.query(
                 KeyConditionExpression=Key('email').eq(email)
         )
@@ -82,4 +82,4 @@ def home():
 
 if __name__ == "__main__":
     
-    app.run(debug=True)
+    app.run(debug=True,port=100,host='0.0.0.0')
